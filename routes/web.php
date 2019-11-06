@@ -72,4 +72,5 @@ Route::group(['middleware'=>['CheckLogin']],function(){
 });
 
 
+Route::any('/wechat/event', 'wechat\\WechatController@event');
 
