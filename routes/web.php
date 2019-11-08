@@ -73,4 +73,6 @@ Route::group(['middleware'=>['CheckLogin']],function(){
 
 
 Route::any('/wechat/event', 'wechat\\WechatController@event');
-
+Route::any('/wechat/test', 'wechat\\WechatController@test');
+Route::any('/wechat/get_access_token', 'wechat\\WechatController@get_access_token');
+Route::any('/wechat/get_wechat_user', 'wechat\\WechatController@get_wechat_user');
