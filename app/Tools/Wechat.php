@@ -38,6 +38,7 @@ class Wechat
         $data=self::get_access_token();
         $url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$data.'&openid='.$openid.'&lang=zh_CN';
         $re=file_get_contents($url);
-        dd($re);
+        $result=json_decode($re,1);
+        return $result;
     }
 }

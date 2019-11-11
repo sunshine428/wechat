@@ -15,6 +15,7 @@ class Logincontroller extends Controller
     {
     	if ($request->isMethod("POST")) {
     		$obj=new LoginModel();
+    		dd($obj);
     		$where=[
     			["admin_account","=",$request->account],
     			["admin_pwd","=",md5($request->pwd)]
