@@ -1,9 +1,0 @@
-<xml>
-  <ToUserName><![CDATA[toUser]]></ToUserName>
-  <FromUserName><![CDATA[fromUser]]></FromUserName>
-  <CreateTime>12345678</CreateTime>
-  <MsgType><![CDATA[image]]></MsgType>
-  <Image>
-    <MediaId><![CDATA[yMK5zO1N5W6K_N1JBfguywnk6GH8JxizakZBnowFwz9422tecpVi4fsFYkAEp_9n]]></MediaId>
-  </Image>
-</xml>
