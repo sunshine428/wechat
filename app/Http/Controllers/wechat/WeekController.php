@@ -4,6 +4,8 @@ namespace App\Http\Controllers\wechat;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Tools\Wechat;
+use App\Hmodels\MediaModel;
 
 class WeekController extends Controller
 {
@@ -53,13 +55,15 @@ class WeekController extends Controller
 //               $data['media']=new \CURLFile($img);
 //               $re=Wechat::curlpost($url,$data);
 //               $msg="RBVoNIQYwNvyHeAcc_pWq9sGzrKAV_WpJp8XLu2MHmcaRoC4qyLTC-iyCm98H68i";
+            $mediaData= MediaModel::inRandomOrder()->first();
+             $media_id=$mediaData['media_id'];
             echo "<xml>
                   <ToUserName><![CDATA[".$arr_obj->FromUserName."]]></ToUserName>
                   <FromUserName><![CDATA[".$arr_obj->ToUserName."]]></FromUserName>
                   <CreateTime>".time()."</CreateTime>
                   <MsgType><![CDATA[image]]></MsgType>
                   <Image>
-                    <MediaId><![CDATA[RBVoNIQYwNvyHeAcc_pWq9sGzrKAV_WpJp8XLu2MHmcaRoC4qyLTC-iyCm98H68i]]></MediaId>
+                    <MediaId><![".$media_id."]]></MediaId>
                   </Image>
                 </xml>";
         }

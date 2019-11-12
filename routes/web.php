@@ -82,8 +82,10 @@ Route::any('/wechat/get_access_token', 'wechat\\WechatController@get_access_toke
 //获取用户基本信息
 Route::any('/wechat/get_wechat_user', 'wechat\\WechatController@get_wechat_user');
 //素材管理
-Route::any('/wechat/media', 'wechat\\WechatController@media');
+//Route::any('/wechat/media', 'wechat\\WechatController@media');
 //添加素材
+Route::any('/wechat/media', 'hadmin\\MediaController@media');
+Route::any('/wechat/add_do', 'hadmin\\MediaController@add_do');
 
 
 
