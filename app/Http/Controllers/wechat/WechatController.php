@@ -40,7 +40,7 @@ class WechatController extends Controller
         }
         if($arr_obj->MsgType=='text'){
             if($arr_obj->Content==1){
-                $msg="刘金月是大傻子";
+                $msg="我喜欢你";
                 echo Wechat::responseType($msg,$arr_obj);
             }else if(mb_strpos($arr_obj->Content,'天气') !== false){
 
@@ -62,6 +62,7 @@ class WechatController extends Controller
                 echo Wechat::responseType($msg,$arr_obj);
             }
         }
+
     }
 
     /**
@@ -125,7 +126,7 @@ class WechatController extends Controller
         /**
          * 获取用户基本信息
          */
-        /** 
+        /**
         public static function get_wechat_user($openid){
             $data=self::get_access_token();
             $url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$data.'&openid='.$openid.'&lang=zh_CN';
@@ -133,5 +134,14 @@ class WechatController extends Controller
             dd($re);
         }
 */
+//    public function media(){
+//        $access_token=Wechat::get_access_token();
+//        $url="https://api.weixin.qq.com/cgi-bin/media/upload?access_token={$access_token}&type=image";
+//        $img="D:/phpstudy_pro/WWW/1565951548832700.jpg";
+//        $data['media']=new \CURLFile($img);
+//        $re=Wechat::curlpost($url,$data);
+//        dd($re);
+//    }
+
 }
 

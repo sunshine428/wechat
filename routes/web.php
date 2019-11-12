@@ -71,12 +71,19 @@ Route::group(['middleware'=>['CheckLogin']],function(){
 
 });
 
-
+//测试公众号一
 Route::any('/wechat/event', 'wechat\\WechatController@event');
+//测试公众号二
+Route::any('/wechat/week_one', 'wechat\\WeekController@week_one');
 
 Route::any('/wechat/test', 'wechat\\WechatController@test');
+//获取token
 Route::any('/wechat/get_access_token', 'wechat\\WechatController@get_access_token');
+//获取用户基本信息
 Route::any('/wechat/get_wechat_user', 'wechat\\WechatController@get_wechat_user');
+//素材管理
+Route::any('/wechat/media', 'wechat\\WechatController@media');
+//添加素材
 
 
 
@@ -85,3 +92,4 @@ Route::any('/hadmin/login', 'Hadmin\\LoginController@login');
 Route::any('/hadmin/loginDo', 'Hadmin\\LoginController@loginDo');
 //后台首页
 Route::any('/hadmin/index', 'hadmin\\IndexController@index');
+

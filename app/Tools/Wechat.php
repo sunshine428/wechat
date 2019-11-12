@@ -22,7 +22,7 @@ class Wechat
         return $Type;
     }
     public static function get_access_token(){
-        $access_token=\Cache::get('access_token');;
+        $access_token=\Cache::get('access_token');
         if(empty($access_token)){
             $url=file_get_contents('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.Self::appId.'&secret='.Self::appSecret);
             $data=json_decode($url,1);
@@ -41,4 +41,40 @@ class Wechat
         $result=json_decode($re,1);
         return $result;
     }
+    //通过curl发送GET
+    public static function curlget($url){
+        //初始化： curl_init
+        $curl = curl_init();
+        //设置	curl_setopt
+        curl_setopt($curl,CURLOPT_URL,$url);//请求地址
+        curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);//返回数据格式
+        //访问https网站 关闭ssl验证
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE); // 对认证证书来源的检查
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE); // 从证书中检查SSL加密算法是否存在
+        //执行  curl_exec
+        $result=curl_exec($curl);
+        //关闭（释放）  curl_close
+        curl_close($curl);
+        return $result;
+    }
+
+   public static function curlpost($url,$data)
+    {
+        //初始化： curl_init
+        $ch = curl_init();
+        //设置	curl_setopt
+        curl_setopt($ch, CURLOPT_URL, $url);  //请求地址
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1); //返回数据格式
+        curl_setopt($ch, CURLOPT_POST, 1);//post提交方式
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        //访问https网站 关闭ssl验证
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); // 对认证证书来源的检查
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); // 从证书中检查SSL加密算法是否存在
+        //执行  curl_exec
+        $result = curl_exec($ch);
+        //关闭（释放）  curl_close
+        curl_close($ch);
+        return $result;
+    }
+
 }
