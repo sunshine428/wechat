@@ -23,7 +23,7 @@ class LoginController extends Controller
                 $info = ["username" => $arr->username, "pwd" => $arr->id];
                 session(['user' => $info]);
                 session()->save();
-                return view("hadmin.index");
+                return redirect('hadmin/index');
             } else {
                 echo "账号或密码错误";exit;
             }

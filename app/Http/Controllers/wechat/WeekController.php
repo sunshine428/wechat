@@ -58,7 +58,24 @@ class WeekController extends Controller
 //               $msg="W8DE9_p9JGx52m6qynUJnGTFHyJe5Z4jY9tp6b9Qdy2Q5ZLk3M3bJS65O0Y7K6c5";
             $mediaData= MediaModel::where(['media_format'=>'image'])->inRandomOrder()->first();
             $media_id=$mediaData['wechat_media_id'];
-           echo Wechat::responseImg($media_id,$arr_obj);
+            echo Wechat::responseImg($media_id,$arr_obj);
+        }
+        if($arr_obj->MsgType=='music'){
+            $mediaData= MediaModel::where(['media_format'=>'voice'])->inRandomOrder()->first();
+            $media_id=$mediaData['wechat_media_id'];
+            echo "<xml>
+                  <ToUserName><![CDATA[".$arr_obj->FromUserName."]]></ToUserName>
+                  <FromUserName><![CDATA[".$arr_obj->ToUserName."]]></FromUserName>
+                  <CreateTime>".time()."</CreateTime>
+                  <MsgType><![CDATA[music]]></MsgType>
+                  <Music>
+                    <Title><![CDATA[TITLE]]></Title>
+                    <Description><![CDATA[DESCRIPTION]]></Description>
+                    <MusicUrl><![CDATA[MUSIC_Url]]></MusicUrl>
+                    <HQMusicUrl><![CDATA[HQ_MUSIC_Url]]></HQMusicUrl>
+                    <ThumbMediaId><![CDATA[".$media_id."]]></ThumbMediaId>
+                  </Music>
+                </xml>";
         }
     }
 }

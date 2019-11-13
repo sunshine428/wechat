@@ -25,9 +25,8 @@ class MediaController extends Controller
         $ext = $file->getClientOriginalExtension();//后缀名
         $filename = md5(uniqid()) . "." . $ext;
         $path = $request->file->storeAs('imgs', $filename, 'local');
-
-        $wechat_media_id=Wechat::getMediaTmp($path);
-
+        $format=$data['media_format'];
+       $wechat_media_id=Wechat::getMediaTmp($path,$format);
         $res = MediaModel::insert([
             'media_name' => $data['media_name'],
             'media_type' => $data['media_type'],
@@ -35,17 +34,16 @@ class MediaController extends Controller
             'media_url' => $path,
             'wechat_media_id' => $wechat_media_id
         ]);
-        if ($res) {
-            return view("hadmin.media.mediaIndex");
+        if($res){
+            session()->flash('media',"添加成功,素材id为");
+            return redirect('/wechat/media_index');
         }
 
     }
 
-    public function index(Request $request){
-        $req=$request->all();
-        !isset($req['type'])? $type=1 : $type = $req['type'];
-        $info=MediaModel::where(['type'=>$type])->paginate(10);
-        return view("hadmin.media.mediaIndex",['info'=>$info]);
+    public function index(){
+        $data=MediaModel::get();
+        return view("hadmin.media.mediaIndex",['info'=>$data]);
     }
 
 }
