@@ -21,6 +21,18 @@ class Wechat
                 </xml>";
         return $Type;
     }
+    public static function responseImg($media_id,$arr_obj){
+        $type= "<xml>
+                      <ToUserName><![CDATA[".$arr_obj->FromUserName."]]></ToUserName>
+                      <FromUserName><![CDATA[".$arr_obj->ToUserName."]]></FromUserName>
+                      <CreateTime>".time()."</CreateTime>
+                      <MsgType><![CDATA[image]]></MsgType>
+                      <Image>
+                        <MediaId><![CDATA[".$media_id."]]></MediaId>
+                      </Image>
+                    </xml>";
+        return $type;
+    }
     public static function get_access_token(){
         $access_token=\Cache::get('access_token');
         if(empty($access_token)){
@@ -57,7 +69,7 @@ class Wechat
         curl_close($curl);
         return $result;
     }
-
+    //听过curl发送post
    public static function curlpost($url,$data)
     {
         //初始化： curl_init
@@ -75,6 +87,22 @@ class Wechat
         //关闭（释放）  curl_close
         curl_close($ch);
         return $result;
+    }
+
+    /**
+     * 临时素材文件上传
+     * @param $path
+     * @return mixed
+     */
+    public static function getMediaTmp($path){
+        $access_token = self::get_access_token();
+        $url = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token={$access_token}&type=image";
+        $data['media'] = new \CURLFile($path);
+        $re = Wechat::curlpost($url, $data);
+        $re = json_decode($re, 1);
+        $wechat_media_id = $re['media_id'];
+
+        return $wechat_media_id;
     }
 
 }

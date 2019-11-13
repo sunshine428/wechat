@@ -36,7 +36,7 @@ class WeekController extends Controller
             </xml>";
         }
         /** 普通消息 */
-        if($arr_obj->MsgType='text'){
+        if($arr_obj->MsgType=='text'){
             if($arr_obj->Content==1){
                 $msg='您好';
                 echo Wechat::responseType($msg,$arr_obj);
@@ -54,18 +54,11 @@ class WeekController extends Controller
 //               $img="/data/wwwroot/default/wechat/1565951548832700.jpg";
 //               $data['media']=new \CURLFile($img);
 //               $re=Wechat::curlpost($url,$data);
-//               $msg="RBVoNIQYwNvyHeAcc_pWq9sGzrKAV_WpJp8XLu2MHmcaRoC4qyLTC-iyCm98H68i";
-            $mediaData= MediaModel::inRandomOrder()->first();
-             $media_id=$mediaData['media_id'];
-            echo "<xml>
-                  <ToUserName><![CDATA[".$arr_obj->FromUserName."]]></ToUserName>
-                  <FromUserName><![CDATA[".$arr_obj->ToUserName."]]></FromUserName>
-                  <CreateTime>".time()."</CreateTime>
-                  <MsgType><![CDATA[image]]></MsgType>
-                  <Image>
-                    <MediaId><![".$media_id."]]></MediaId>
-                  </Image>
-                </xml>";
+//               dd($re);
+//               $msg="W8DE9_p9JGx52m6qynUJnGTFHyJe5Z4jY9tp6b9Qdy2Q5ZLk3M3bJS65O0Y7K6c5";
+            $mediaData= MediaModel::where(['media_format'=>'image'])->inRandomOrder()->first();
+            $media_id=$mediaData['wechat_media_id'];
+           echo Wechat::responseImg($media_id,$arr_obj);
         }
     }
 }

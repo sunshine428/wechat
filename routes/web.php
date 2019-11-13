@@ -84,9 +84,9 @@ Route::any('/wechat/get_wechat_user', 'wechat\\WechatController@get_wechat_user'
 //素材管理
 //Route::any('/wechat/media', 'wechat\\WechatController@media');
 //添加素材
-Route::any('/wechat/media', 'hadmin\\MediaController@media');
-Route::any('/wechat/add_do', 'hadmin\\MediaController@add_do');
-
+Route::any('/wechat/media', 'Hadmin\\MediaController@media');
+Route::any('/wechat/add_do', 'Hadmin\\MediaController@add_do');
+Route::any('/wechat/media_index', 'Hadmin\\MediaController@index');
 
 
 //后台登录
