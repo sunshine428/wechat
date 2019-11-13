@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    <h3><b>素材管理-素材展示</b></h3>
     <table class="table table-hover table table-bordered">
         <tr>
             <td>素材ID</td>

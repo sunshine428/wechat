@@ -98,7 +98,7 @@ class Wechat
         $access_token = self::get_access_token();
         $url = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token={$access_token}&type={$format}";
         $data['media'] = new \CURLFile($path);
-        $re = Wechat::curlpost($url, $data);
+        $re = self::curlpost($url, $data);
         $re = json_decode($re, 1);
         $wechat_media_id = $re['media_id'];
         return $wechat_media_id;

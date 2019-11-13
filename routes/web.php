@@ -87,6 +87,9 @@ Route::any('/wechat/get_wechat_user', 'wechat\\WechatController@get_wechat_user'
 Route::any('/wechat/media', 'Hadmin\\MediaController@media');
 Route::any('/wechat/add_do', 'Hadmin\\MediaController@add_do');
 Route::any('/wechat/media_index', 'Hadmin\\MediaController@index');
+//渠道管理
+Route::any('/wechat/channel', 'Hadmin\\ChannelController@channel');
+Route::any('/wechat/channel_do', 'Hadmin\\ChannelController@channel_do');
 
 
 //后台登录
